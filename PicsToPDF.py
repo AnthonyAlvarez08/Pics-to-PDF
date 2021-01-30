@@ -26,8 +26,6 @@ def press_multiple(keys : list):
     global keyboard
     for i in keys:
         keyboard.press(i)
-
-    # sleep(0.01)
     for i in keys:
         keyboard.release(i)
 
@@ -59,7 +57,7 @@ for filename in files:
     sleep(0.5)
     name = f"\"{directory}\\{filename}\""
 
-    # go to inset image
+    # insert image
     press_multiple([Key.ctrl, "a"])
     
     # wait a bit and select the image

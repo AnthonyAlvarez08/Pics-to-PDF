@@ -52,10 +52,10 @@ ctrl + W -> anchor as character
 
 # get the list of files in the directory
 files = os.listdir(directory)
-try:
-    files = list(map(str, sorted(list(map(int, files)))))
-except Exception:
-    files = sorted(files)
+
+files.sort() # sort normally
+files.sort(key=lambda x: len(x)) # sort by length to aboid 1 10 2 placements
+
 for filename in files:
     # wait a bit and retrieve filename
     sleep(0.5)

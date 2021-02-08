@@ -65,6 +65,8 @@ for filename in files:
     press_multiple([Key.ctrl, "a"])
     
     # wait a bit and select the image
+    sleep(0.3)
+    keyboard.tap(Key.backspace)
     sleep(0.5)
     keyboard.type(name)
     sleep(0.5)
@@ -78,6 +80,7 @@ for filename in files:
     sleep(0.5)
     for i in [Key.esc, Key.left, Key.enter]:
         keyboard.tap(i)
+        sleep(0.15)
     
 #export as pdf
 sleep(0.5)
@@ -86,7 +89,7 @@ sleep(0.1)
 keyboard.tap(Key.enter)
 sleep(1)
 keyboard.tap(Key.backspace)
-sleep(0.1)
+sleep(0.5)
 keyboard.type(f"\"{directory}\{exported}.pdf\"")
 keyboard.tap(Key.enter)
 keyboard.tap(Key.enter)

@@ -84,6 +84,7 @@ for filename in files:
         sleep(0.15)
     keyboard.press(Key.page_down)
     sleep(TIME)
+    
     keyboard.release(Key.page_down)
     
 #export as pdf

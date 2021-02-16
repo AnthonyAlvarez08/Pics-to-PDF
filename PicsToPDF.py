@@ -11,7 +11,7 @@ will paste all pictures in order of appearance in the folder
 export it all as a pdf
 
 Author: Anthony Alvarez
-Date: 01/29/2021
+Date: 02/16/2021
 """
 
 from pynput.keyboard import Key, Controller
@@ -20,6 +20,7 @@ import os
 
 # will simulate key presses
 keyboard = Controller()
+TIME = 0.5
 
 # presses multiple keys
 def press_multiple(keys : list):
@@ -58,38 +59,41 @@ files.sort(key=lambda x: len(x)) # sort by length to aboid 1 10 2 placements
 
 for filename in files:
     # wait a bit and retrieve filename
-    sleep(0.5)
+    sleep(TIME)
     name = f"\"{directory}\\{filename}\""
 
     # insert image
     press_multiple([Key.ctrl, "a"])
     
     # wait a bit and select the image
-    sleep(0.3)
+    sleep(TIME)
     keyboard.tap(Key.backspace)
-    sleep(0.5)
+    sleep(TIME)
     keyboard.type(name)
-    sleep(0.5)
+    sleep(TIME)
     keyboard.tap(Key.enter)
 
     # wait a bit and anchor it as a character
-    sleep(0.5)
+    sleep(TIME)
     press_multiple([Key.ctrl, "w"])
     
     # wait a bit and advance to the next line
-    sleep(0.5)
-    for i in [Key.esc, Key.left, Key.enter]:
+    sleep(TIME)
+    for i in [Key.esc, Key.left, Key.enter]: # maybe Key.down
         keyboard.tap(i)
         sleep(0.15)
+    keyboard.press(Key.page_down)
+    sleep(TIME)
+    keyboard.release(Key.page_down)
     
 #export as pdf
-sleep(0.5)
+sleep(TIME)
 keyboard.tap(Key.f4)
 sleep(0.1)
 keyboard.tap(Key.enter)
 sleep(1)
 keyboard.tap(Key.backspace)
-sleep(0.5)
+sleep(TIME)
 keyboard.type(f"\"{directory}\{exported}.pdf\"")
 keyboard.tap(Key.enter)
 keyboard.tap(Key.enter)
